@@ -48,6 +48,10 @@ pipeline {
                         aws(credentialsId: 'aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')
                     ]) {
                         dir("$WORKDIR/terraform") {
+                            def key_exist = sh(script: "ls $WORKDIR/terraform/key_tutorial", returnStatus: true)
+                            if (key_exist == 1) {
+                                sh "sh $WORKDIR/terraform/key_pair.sh"
+                            }
                             sh "$TERRAFORM init"
                             sh "$TERRAFORM fmt"
                             sh "$TERRAFORM validate"
