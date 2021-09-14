@@ -8,8 +8,12 @@
 # Ignore repo configuration file
 vagrant/conf.json
 
+# Ignore SSH keys
+*/key_tutorial*
+
 # Local .terraform directories
 **/.terraform/*
+**/.terraform*
 # .tfstate files
 *.tfstate
 *.tfstate.*
